@@ -9,6 +9,6 @@ public enum Cores {
 	VERDE,
 	VERMELHO,
 	AZUL,
-	CINZA;
+	CINZA,
 	
 }

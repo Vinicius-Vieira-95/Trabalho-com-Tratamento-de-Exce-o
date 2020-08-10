@@ -16,9 +16,13 @@ public class Robo {
 	private Cores cor;
 	private Integer eixoX = 0;
 	private Integer eixoY = 0;
+	private int movimentos;
 
 	public Robo(Cores cores) throws MovimentoInvalidoException {
-		this.setCor(cores);
+		if(cor !=null) {
+			throw new MovimentoInvalidoException("Não existe cor ao personagem");
+		}
+		this.cor = cores;
 	}
 
 	public Integer getEixoX() {
@@ -39,7 +43,7 @@ public class Robo {
 
 	@Override
 	public String toString() { 
-		return "Eixo X:" + eixoX + ", Eixo Y:" + eixoY;
+		return "Cor: "+ this.cor+", Total: "+this.movimentos;
 	}
 
 	/*
@@ -70,9 +74,9 @@ public class Robo {
 	}
 	
 	//Sobre carga do metodo mover
-	public void mover(Integer num) throws MovimentoInvalidoException {
-
-		if (num == 1) {
+	public void mover(Integer num ) throws MovimentoInvalidoException {
+		
+		if (num  == 1) {
 			eixoY += 1;
 		} else if (num == 2) {
 			eixoY -= 1;
@@ -81,7 +85,7 @@ public class Robo {
 		} else if (num == 4) {
 			eixoX -= 1;
 		} else if (eixoX < 0 || eixoY < 0) {
-			throw new MovimentoInvalidoException("Erro: Personagem na zona negativa");
+			 throw new MovimentoInvalidoException("Erro: Personagem na zona negativa");
 		}
 
 	}
@@ -89,19 +93,19 @@ public class Robo {
 	public boolean alimento(Integer x, Integer y) { //posição do alimento
 
 		if (x.equals(eixoX) && y.equals(eixoY)) {
-			System.out.println("Achou");
+			System.out.println( toString());
 			return true;
 		} else {
 			return false;
 		}
 	}
-
-	public Cores getCor() {
-		return cor;
+	
+	public void soma(int n) {
+		this.movimentos += n;
 	}
-
-	public void setCor(Cores cor) {
-		this.cor = cor;
+	
+	public Integer getMovimento() {
+		return movimentos;
 	}
 
 }
